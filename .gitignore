@@ -1,0 +1,13 @@
+node_modules/
+downloads/
+reports/
+test-results/
+*.log
+.settings
+.project
+.DS_Store
+**/reports
+**/screenshots
+**/videos
+.npmrc
+.vscode/
