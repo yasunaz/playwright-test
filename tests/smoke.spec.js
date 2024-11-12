@@ -1,6 +1,5 @@
 import test, { expect } from '@playwright/test';
 import elements from '../pages/elements';
-import { faker } from '@faker-js/faker';
 import { getUser } from '../utils/data';
 
 // test data
@@ -14,6 +13,7 @@ test.describe('Student Management Portal Smoke Tests', () => {
       await page.locator(elements.email).fill(username);
       await page.locator(elements.pass).fill(testpass);
       await page.locator(elements.signIn).click();
+      await page.waitForTimeout(700);
    });
 
    test('verify user can login and see the home page', async ({ page }) => {
@@ -23,7 +23,6 @@ test.describe('Student Management Portal Smoke Tests', () => {
 
    test('verify user can search for a student', async ({ page }) => {
       await page.locator(elements.search).fill('Kara');
-      await page.locator(elements.search).press('Enter');
 
       const all_users = page.locator(elements.users);
       expect(await all_users.count()).toBe(2);
@@ -31,7 +30,7 @@ test.describe('Student Management Portal Smoke Tests', () => {
       expect(await all_users.nth(1).textContent()).toContain('Kara Dennis');
    });
 
-   test.only('verify user can add new student', async ({ page }) => {
+   test('verify user can add new student', async ({ page }) => {
       const student = getUser();
 
       await page.locator(elements.addStudentBttn).click();
