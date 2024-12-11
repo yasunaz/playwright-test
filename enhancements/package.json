@@ -1,0 +1,23 @@
+{
+  "name": "playwright-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "bunRun": "bunx --bun playwright test",
+    "bunTestUI": "bunx --bun playwright test --ui",
+    "run": "npx playwright test",
+    "testUI": "npx playwright test --ui",
+    "runFailedOnly": "npx playwright test --last-failed"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.46.1",
+    "@types/node": "^22.5.4"
+  },
+  "dependencies": {
+    "@types/bun": "^1.1.10"
+  }
+}
