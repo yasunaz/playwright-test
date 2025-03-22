@@ -1,0 +1,36 @@
+import { test, expect } from '@playwright/test';
+
+test('verify user can create new student', async ({ page }) => {
+   await page.goto('https://student-portal.swaggear.life/login');
+   await page.getByLabel('Username / Email *').click();
+   await page.getByLabel('Username / Email *').fill('test@gmail.com');
+   await page.getByLabel('Password *').click();
+   await page.getByLabel('Password *').fill('test1');
+   await page.getByRole('button', { name: 'Sign In' }).click();
+   await page.getByRole('link', { name: 'Add Student' }).click();
+   await page.getByLabel('First Name *').click();
+   await page.getByLabel('First Name *').fill('nijat');
+   await page.getByLabel('First Name *').press('Tab');
+   await page.getByLabel('Last Name *').fill('muhtar');
+   await page.getByLabel('Last Name *').press('Tab');
+   await page.getByLabel('Email *').fill('testadmin@gmail.com');
+   await page.getByLabel('Password *').click();
+   await page.getByLabel('Password *').fill('pass1');
+   await page.getByLabel('Phone Number').click();
+   await page.getByLabel('Phone Number').fill('7532343234');
+   await page.getByLabel('Address *').click();
+   await page.getByLabel('Address *').fill('902 Melody Ct NE, Leesburg VA 20175');
+   await page.getByLabel('Age').click();
+   await page.getByLabel('Age').fill('33');
+   await page.getByLabel('Gender').click();
+   await page.getByLabel('Gender').fill('Male');
+   await page.getByLabel('Notes').click();
+   await page.getByLabel('Notes').fill('This is a test');
+   await page.getByRole('button', { name: 'create' }).click();
+   await page.getByPlaceholder('Search...').click();
+   await page.getByPlaceholder('Search...').fill('Nijat');
+   await page.getByPlaceholder('Search...').press('Enter');
+   await page.waitForTimeout(1_000);
+   const targetUserName = page.locator('p[id*="students-user"]').first();
+   await expect(targetUserName).toContainText('nijat muhtar');
+});
