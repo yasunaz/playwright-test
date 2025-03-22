@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
-   testDir: './tests',
+   testDir: './scripts',
    timeout: 30_000,
    workers: 1,
    use: {
@@ -9,7 +9,7 @@ export default defineConfig({
       viewport: { width: 1980, height: 1080 },
       actionTimeout: 10_000,
       launchOptions: {
-         slowMo: 200,
+         slowMo: 400,
       },
    },
    reporter: [['html', { outputFolder: 'reports' }]],
